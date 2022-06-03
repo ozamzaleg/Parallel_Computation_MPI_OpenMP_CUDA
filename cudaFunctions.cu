@@ -29,14 +29,14 @@ __global__ void fFunction(int *arr, int numElements, int *counter)
 
 int computeOnGPU(int *data, int numElements, int *counter)
 {
+    
+    int *d_A;
+    int *d_counter;
     // Error code to check return values for CUDA calls
     cudaError_t err = cudaSuccess;
 
     size_t size = numElements * sizeof(int);
     size_t sizeCounter = sizeof(int);
-    // Allocate memory on GPU to copy the data from the host
-    int *d_A;
-    int *d_counter;
 
     err = cudaMalloc((void **)&d_A, size);
     if (err != cudaSuccess)
